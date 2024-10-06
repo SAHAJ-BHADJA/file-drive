@@ -1,4 +1,5 @@
 "use client";
+
 import { useOrganization, useUser } from "@clerk/nextjs";
 import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
@@ -9,7 +10,7 @@ import { GridIcon, Loader2, RowsIcon } from "lucide-react";
 import { SearchBar } from "./search-bar";
 import { useState } from "react";
 import { DataTable } from "./file-table";
-import { columns } from "./columns";
+import { columns } from "./columns"; // Ensure this points to the updated columns
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
@@ -80,6 +81,7 @@ export function FileBrowser({
       isFavorited: (favorites ?? []).some(
         (favorite) => favorite.fileId === file._id
       ),
+      url: file.url || null, // Ensure url is defined
     })) ?? [];
 
   return (

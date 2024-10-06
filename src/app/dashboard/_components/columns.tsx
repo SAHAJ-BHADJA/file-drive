@@ -8,10 +8,12 @@ import { api } from "../../../../convex/_generated/api";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FileCardActions } from "./file-actions";
 
+// UserCell component
 function UserCell({ userId }: { userId: Id<"users"> }) {
   const userProfile = useQuery(api.users.getUserProfile, {
     userId: userId,
   });
+
   return (
     <div className="flex gap-2 text-xs text-gray-700 w-40 items-center">
       <Avatar className="w-6 h-6">
@@ -23,8 +25,9 @@ function UserCell({ userId }: { userId: Id<"users"> }) {
   );
 }
 
+// Column definitions for the table
 export const columns: ColumnDef<
-  Doc<"files"> & { url: string; isFavorited: boolean }
+  Doc<"files"> & { url: string | null; isFavorited: boolean }
 >[] = [
   {
     accessorKey: "name",
